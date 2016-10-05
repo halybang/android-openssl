@@ -9,14 +9,16 @@
 
 #####################################################################
 
+ANDROID_NDK_ROOT="$HOME/usr/android/android-ndk-r12b"
 # Set ANDROID_NDK_ROOT to you NDK location. For example,
 # /opt/android-ndk-r8e or /opt/android-ndk-r9. This can be done in a
 # login script. If ANDROID_NDK_ROOT is not specified, the script will
 # try to pick it up with the value of _ANDROID_NDK_ROOT below. If
 # ANDROID_NDK_ROOT is set, then the value is ignored.
 # _ANDROID_NDK="android-ndk-r8e"
-_ANDROID_NDK="android-ndk-r10d"
+_ANDROID_NDK="android-ndk-r10e"
 # _ANDROID_NDK="android-ndk-r10"
+
 
 # Set _ANDROID_EABI to the EABI you want to use. You can find the
 # list in $ANDROID_NDK_ROOT/toolchains. This value is always used.
@@ -122,7 +124,7 @@ case $_ANDROID_TARGET_SELECT in
       ANDROID_TOOLS="arm-linux-androideabi-gcc arm-linux-androideabi-ranlib arm-linux-androideabi-ld"
 	  ;;
     arch-arm64-v8a)
-      ANDROID_TOOLS="aarch64-linux-android-gcc aarch64-linux-android-randlib aarch64-linux-android-ld"
+      ANDROID_TOOLS="aarch64-linux-android-gcc aarch64-linux-android-ranlib aarch64-linux-android-ld"
       ;;
 	arch-x86)	  
       ANDROID_TOOLS="i686-linux-android-gcc i686-linux-android-ranlib i686-linux-android-ld"
@@ -249,6 +251,7 @@ export SYSROOT="$ANDROID_SYSROOT"
 export NDK_SYSROOT="$ANDROID_SYSROOT"
 export ANDROID_NDK_SYSROOT="$ANDROID_SYSROOT"
 export ANDROID_API="$_ANDROID_API"
+export CROSS_SYSROOT="$SYSROOT"
 
 # CROSS_COMPILE and ANDROID_DEV are DFW (Don't Fiddle With). Its used by OpenSSL build system.
 # export CROSS_COMPILE="arm-linux-androideabi-"
@@ -266,4 +269,5 @@ if [ ! -z "$VERBOSE" ] && [ "$VERBOSE" != "0" ]; then
   echo "FIPS_SIG: $FIPS_SIG"
   echo "CROSS_COMPILE: $CROSS_COMPILE"
   echo "ANDROID_DEV: $ANDROID_DEV"
+  echo "SYSROOT: $SYSROOT"
 fi
